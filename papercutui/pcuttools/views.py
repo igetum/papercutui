@@ -26,13 +26,13 @@ def idimport(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(request.FILES['importfile'])
-            
+            run_id_import()
             return HttpResponse("Successful")
     else:
         if os.path.exists(os.path.join(idImportpath, 'import.txt')):
             message = "Import File is ready to upload"
             form = UploadFileForm()
-
+            
         else:
             form = UploadFileForm()
 
