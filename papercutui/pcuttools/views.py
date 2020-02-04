@@ -50,6 +50,6 @@ def handle_uploaded_file(f):
 
 def run_id_import():
     
-    subprocess.run(serverCommandPath+"/server-command --batch-import-user-card-id-numbers " + serverCommandPath + "/paperImport/import.txt")
+    os.system(serverCommandPath+"/server-command --batch-import-user-card-id-numbers " + serverCommandPath + "/paperImport/import.txt")
     
    
