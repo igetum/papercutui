@@ -2,13 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-import os
+import os, sys, stat
+import subprocess
 
 from pathlib import Path
 from .forms import UploadFileForm
 
 homeDir = str(Path.home())
 idImportpath = os.path.join(homeDir, 'server', 'bin', 'linux-x64', 'paperImport')
+serverCommandPath = os.path.join(homeDir, 'server', 'bin', 'linux-x64')
 
 # Create your views here.
 def home(request):
@@ -24,6 +26,7 @@ def idimport(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             handle_uploaded_file(request.FILES['importfile'])
+            
             return HttpResponse("Successful")
     else:
         if os.path.exists(os.path.join(idImportpath, 'import.txt')):
@@ -42,6 +45,11 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
     f.close()
+    
+
 
 def run_id_import():
-    return HttpResponse("I RAN")
+    
+    subprocess.call([serverCommandPath+'/server-command', "--batch-import-user-card-id-numbers paperImport/import.txt"])
+    
+   
