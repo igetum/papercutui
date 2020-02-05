@@ -26,7 +26,7 @@ def idimport(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            input_File = request.Files('importfile')
+            input_File = request.FILES('importfile')
             if import_file_valid(input_File):
                 handle_uploaded_file(request.FILES['importfile'])
                 run_id_import()
