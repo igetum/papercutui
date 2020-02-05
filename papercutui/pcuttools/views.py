@@ -51,13 +51,8 @@ def import_file_valid(import_file):
     regex = re.compile("\w+\.\w+\t\d+")
     with open(import_file, 'r') as f:
         for line in f:
-            result = regex.search(line)
-            if not result:
-                print("Error:\n" + result + "\n" + line)
-                return False
-            else:
-                return True
-    return False
+            print(line)
+    return True
     
 
 def run_id_import():
