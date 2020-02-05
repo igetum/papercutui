@@ -54,10 +54,10 @@ def import_file_valid(import_file):
             results = regex.match(line)
             print(line)
             print(results)
-            if results != None:
-                continue
-            else:
+            if results = None:
                 return False
+            else:
+                continue
     return True
     
 
