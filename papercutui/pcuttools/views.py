@@ -51,7 +51,7 @@ def import_file_valid(import_file):
     regex = re.compile("\w+\.\w+\t\d+")
     with open(import_file, 'r') as f:
         for line in f:
-            results = regex.findall(line)
+            results = regex.match(line)
             print(line)
             print(results)
             if results:
