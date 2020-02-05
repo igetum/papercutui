@@ -52,6 +52,7 @@ def import_file_valid(import_file):
     with open(import_file, 'r') as f:
         for line in f:
             results = regex.findall(line)
+            print(line)
             print(results)
             if results:
                 continue
