@@ -23,17 +23,17 @@ def home(request):
     return render(request, 'home.html')
 
 def idimport(request):
-    message = ""
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             input_File = request.FILES['importfile']
             handle_uploaded_file(input_File)
-            if import_file_valid(importFile):
+            valid,message = import_file_valid(importFile)
+            if valid:
                 run_id_import()
-                return HttpResponse("Successful")
+                return HttpResponse(message)
             else:
-                return HttpResponse("Error")
+                return HttpResponse(message)
             
     else:
 
@@ -51,13 +51,15 @@ def handle_uploaded_file(f):
     
 
 def import_file_valid(import_file):
+    message = ""
     with open(import_file, 'r') as f:
         for line in f:
             results = re.findall(r'\w+\.\w+\t\d+', line)
             print(results)
             if len(results) == 0:
-                return False
-    return True
+                message = "Error with import file: " + line
+                return False, message
+    return True, message
 
 def run_id_import():
     subprocess.run(["server-command", "batch-import-user-card-id-numbers", idImportpath+"/import.txt"])
