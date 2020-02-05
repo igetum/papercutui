@@ -32,7 +32,7 @@ def idimport(request):
             if valid:
                 run_id_import()
             
-            return redirect("importid", message:message)
+            return redirect('importid', 'message':message)
             
     else:
 
