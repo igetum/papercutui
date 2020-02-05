@@ -54,7 +54,7 @@ def import_file_valid(import_file):
             results = regex.match(line)
             print(line)
             print(results)
-            if results = None:
+            if results == None:
                 return False
             else:
                 continue
