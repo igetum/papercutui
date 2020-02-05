@@ -32,7 +32,7 @@ def idimport(request):
             if valid:
                 run_id_import()
             
-            return redirect('importid', kwargs={'message':message})
+            return render(request, 'idimport.html', {'form':form, 'message':message})
             
     else:
 
