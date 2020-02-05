@@ -54,12 +54,11 @@ def import_file_valid(import_file):
             results = regex.findall(line)
             print(line)
             print(results)
-            if results > 0:
+            if len(results) > 0:
                 return False
             else:
                 continue
     return True
-    
 
 def run_id_import():
     subprocess.run(["server-command", "batch-import-user-card-id-numbers", idImportpath+"/import.txt"])
