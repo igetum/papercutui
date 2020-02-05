@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 import os, sys, stat
 import subprocess
+import re
 
 from pathlib import Path
 from .forms import UploadFileForm
@@ -25,16 +26,14 @@ def idimport(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES['importfile'])
-            run_id_import()
+            input_File = request.Files('importfile')
+            if import_file_valid(input_File):
+                handle_uploaded_file(request.FILES['importfile'])
+                run_id_import()
             return HttpResponse("Successful")
     else:
-        if os.path.exists(os.path.join(idImportpath, 'import.txt')):
-            message = "Import File is ready to upload"
-            form = UploadFileForm()
-            
-        else:
-            form = UploadFileForm()
+
+        form = UploadFileForm()
 
     return render(request, 'idimport.html', {'form':form, 'message':message})
         
@@ -47,8 +46,19 @@ def handle_uploaded_file(f):
     f.close()
     
 
+def import_file_valid(import_file):
+    regex = re.compile("\w+\.\w+\t\d+")
+    with open(import_file, 'r') as f:
+        for line in f:
+            result = regex.search(line)
+            if not result:
+                print("Error:\n" + result + "\n" + line)
+                return False
+            else:
+                return True
+    return False
+    
 
 def run_id_import():
-    
     subprocess.run(["server-command", "batch-import-user-card-id-numbers", idImportpath+"/import.txt"])
    
