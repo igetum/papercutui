@@ -38,7 +38,7 @@ def idimport(request):
 
         form = UploadFileForm()
 
-    return render(request, 'idimport.html', {'form':form, 'message':message})
+    return render(request, 'idimport.html', {'form':form})
         
 
 def handle_uploaded_file(f):
