@@ -31,7 +31,10 @@ def idimport(request):
             handle_uploaded_file(input_File)
             if import_file_valid(importFile):
                 run_id_import()
-            return HttpResponse("Successful")
+                return HttpResponse("Successful")
+            else:
+                return HttpResponse("Error")
+            
     else:
 
         form = UploadFileForm()
