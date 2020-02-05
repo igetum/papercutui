@@ -48,16 +48,12 @@ def handle_uploaded_file(f):
     
 
 def import_file_valid(import_file):
-    regex = re.compile("\w+\.\w+\t\d+")
     with open(import_file, 'r') as f:
         for line in f:
-            results = regex.findall(line)
-            print(line)
+            results = re.findall(r'\w+\.\w+\t\d+', line)
             print(results)
             if len(results) > 0:
                 return False
-            else:
-                continue
     return True
 
 def run_id_import():
