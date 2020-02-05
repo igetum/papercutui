@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 
@@ -31,9 +31,8 @@ def idimport(request):
             valid,message = import_file_valid(importFile)
             if valid:
                 run_id_import()
-                return HttpResponse(message)
-            else:
-                return HttpResponse(message)
+            
+            return redirect("importid", message:message)
             
     else:
 
@@ -51,7 +50,7 @@ def handle_uploaded_file(f):
     
 
 def import_file_valid(import_file):
-    message = ""
+    message = "Success"
     with open(import_file, 'r') as f:
         for line in f:
             results = re.findall(r'\w+\.\w+\t\d+', line)
