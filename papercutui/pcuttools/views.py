@@ -29,7 +29,7 @@ def idimport(request):
         if form.is_valid():
             input_File = request.FILES['importfile']
             handle_uploaded_file(input_File)
-            if import_file_valid(inputFile):
+            if import_file_valid(importFile):
                 run_id_import()
             return HttpResponse("Successful")
     else:
