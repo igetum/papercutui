@@ -32,13 +32,13 @@ def idimport(request):
             if valid:
                 run_id_import()
             
-            return render(request, 'idimport.html', {'form':form, 'message':message})
+            return render(request, 'pcuttools/idimport.html', {'form':form, 'message':message})
             
     else:
 
         form = UploadFileForm()
 
-    return render(request, 'idimport.html', {'form':form})
+    return render(request, 'pcuttools/idimport.html', {'form':form})
         
 
 def handle_uploaded_file(f):

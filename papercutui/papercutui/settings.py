@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/3.0/howfrom django.conf import settingsto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 't78b&geqi8kg=q1ir-i0^6a*&kc1^o%=7wbq8tyqf)ebe&+c@^'
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'papercutui'
+    'pcuttools'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
+STATICFILES_DIRS = ( os.path.join(PROJECT_ROOT, "static"), )

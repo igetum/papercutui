@@ -1,0 +1,17 @@
+.title {
+    margin: 25px 0px;
+}
+
+#instruct-card {
+    margin-bottom: 50px;
+}
+
+#import-form {
+    margin-left:10px;
+    
+}
+
+.message {
+    margin: 25px 0px;
+    color: orange;
+}
