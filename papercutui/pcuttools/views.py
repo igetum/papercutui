@@ -51,10 +51,10 @@ def import_file_valid(import_file):
     regex = re.compile("\w+\.\w+\t\d+")
     with open(import_file, 'r') as f:
         for line in f:
-            results = regex.match(line)
+            results = regex.findall(line)
             print(line)
             print(results)
-            if results == None:
+            if results > 0:
                 return False
             else:
                 continue
