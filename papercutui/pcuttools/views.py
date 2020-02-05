@@ -52,7 +52,7 @@ def import_file_valid(import_file):
         for line in f:
             results = re.findall(r'\w+\.\w+\t\d+', line)
             print(results)
-            if len(results) > 0:
+            if len(results) == 0:
                 return False
     return True
 
