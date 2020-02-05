@@ -11,6 +11,7 @@ from .forms import UploadFileForm
 
 homeDir = str(Path.home())
 idImportpath = os.path.join(homeDir, 'server', 'bin', 'linux-x64', 'paperImport')
+importFile = os.path.join(idImportpath, 'import.txt')
 serverCommandPath = os.path.join(homeDir, 'server', 'bin', 'linux-x64')
 
 # Create your views here.
@@ -27,8 +28,8 @@ def idimport(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             input_File = request.FILES['importfile']
-            if import_file_valid(input_File):
-                handle_uploaded_file(input_File)
+            handle_uploaded_file(input_File)
+            if import_file_valid(inputFile):
                 run_id_import()
             return HttpResponse("Successful")
     else:
@@ -39,7 +40,7 @@ def idimport(request):
         
 
 def handle_uploaded_file(f):
-    with open(os.path.join(idImportpath, 'import.txt'), 'wb+') as destination:
+    with open(importFile, 'wb+') as destination:
         print("writing file")
         for chunk in f.chunks():
             destination.write(chunk)
